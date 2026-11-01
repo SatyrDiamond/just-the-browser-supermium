@@ -12,7 +12,7 @@ The setup script can install the configuration files in a few clicks. You can al
 
 **Windows:** Search for "Windows PowerShell" in the Start Menu, right-click it, and select the "Run as administrator" option. Next, copy the below command, paste it into the window (`Ctrl+V`), and press the Enter/Return key:
 ```
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/corbindavenport/just-the-browser/main/main.ps1")))
+& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/SatyrDiamond/just-the-browser-supermium/main/main.ps1")))
 ```
 If you are on older versions of Windows, you may need to run this command first:
 ```
@@ -22,7 +22,7 @@ If you are on older versions of Windows, you may need to run this command first:
 **Mac and Linux:** Search for the Terminal in your applications list and open it. Next, copy the below command, paste it into the window (`Ctrl+V` or `Cmd+V`), and press the Enter/Return key:
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/corbindavenport/just-the-browser/main/main.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/SatyrDiamond/just-the-browser-supermium/main/main.sh)"
 ```
 
 
@@ -48,7 +48,7 @@ The site is compiled and deployed with the `eleventy_build.yml` GitHub Action.
 You can subscribe to the RSS/Atom releases feed to know when the configuration files, documentation, and scripts are updated:
 
 ```
-https://github.com/corbindavenport/just-the-browser/releases.atom
+https://github.com/SatyrDiamond/just-the-browser-supermium/releases.atom
 ```
 
-This feed can be used with [Feedly](https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fgithub.com%2Fcorbindavenport%2Fjust-the-browser%2Freleases.atom), [Inoreader](https://www.inoreader.com/?add_feed=https://github.com/corbindavenport/just-the-browser/releases.atom), [The Old Reader](https://theoldreader.com/feeds/subscribe?url=https://github.com/corbindavenport/just-the-browser/releases.atom), [Feedbin](https://feedbin.me/?subscribe=https://github.com/corbindavenport/just-the-browser/releases.atom), or any other reader tool. You can also subscribe to new releases with your GitHub account by clicking the Watch button at the top of the page, then selecting Custom > New releases.
+This feed can be used with [Feedly](https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fgithub.com%2Fcorbindavenport%2Fjust-the-browser%2Freleases.atom), [Inoreader](https://www.inoreader.com/?add_feed=https://github.com/SatyrDiamond/just-the-browser-supermium/releases.atom), [The Old Reader](https://theoldreader.com/feeds/subscribe?url=https://github.com/SatyrDiamond/just-the-browser-supermium/releases.atom), [Feedbin](https://feedbin.me/?subscribe=https://github.com/SatyrDiamond/just-the-browser-supermium/releases.atom), or any other reader tool. You can also subscribe to new releases with your GitHub account by clicking the Watch button at the top of the page, then selecting Custom > New releases.
