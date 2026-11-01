@@ -3,7 +3,7 @@
 
 # Allow alternate base URL as first command-line argument, for testing and development
 Param(
-    [string]$BaseUrl = "https://raw.githubusercontent.com/corbindavenport/just-the-browser/main"
+    [string]$BaseUrl = "https://raw.githubusercontent.com/SatyrDiamond/just-the-browser-supermium/main"
 )
 
 # GitHub requires TLS v1.2, but it's not enabled by default in PowerShell v5.0 and older releases
@@ -29,6 +29,8 @@ $MicrosoftEdgeInstallRegistry = "$BaseUrl/edge/install.reg"
 $MicrosoftEdgeUninstallRegistry = "$BaseUrl/edge/uninstall.reg"
 $GoogleChromeInstallRegistry = "$BaseUrl/chrome/install.reg"
 $GoogleChromeUninstallRegistry = "$BaseUrl/chrome/uninstall.reg"
+$SupermiumInstallRegistry = "$BaseUrl/supermium/install.reg"
+$SupermiumUninstallRegistry = "$BaseUrl/supermium/uninstall.reg"
 $FirefoxInstallRegistry = "$BaseUrl/firefox/install.reg"
 $FirefoxUninstallRegistry = "$BaseUrl/firefox/uninstall.reg"
 $BraveInstallRegistry = "$BaseUrl/brave/install.reg"
@@ -91,6 +93,50 @@ function Uninstall-Chrome {
     $ChromeUninstall = Start-Process "reg.exe" -ArgumentList "import `"$env:LocalAppData\chrome.reg`"" -WindowStyle Hidden -Wait -PassThru
     if ($ChromeUninstall.ExitCode -eq 0) {
         Read-Host -Prompt "Removed Google Chrome settings. Press Enter/Return to continue" | Out-Null
+    }
+    else {
+        Read-Host -Prompt "Remove failed! Press Enter/Return to continue" | Out-Null
+    }
+}
+
+# Install Supermium settings
+function Install-Supermium {
+    Show-Header
+    Write-Host "Downloading registry file, please wait..."
+    # Download file
+    try {
+        Invoke-WebRequest $SupermiumInstallRegistry -OutFile "$env:LocalAppData\Supermium.reg"
+    }
+    catch {
+        Read-Host -Prompt "Download failed! Press Enter/Return to continue" | Out-Null
+        Return
+    }
+    # Install file
+    $SupermiumInstall = Start-Process "reg.exe" -ArgumentList "import `"$env:LocalAppData\Supermium.reg`"" -WindowStyle Hidden -Wait -PassThru
+    if ($SupermiumInstall.ExitCode -eq 0) {
+        Read-Host -Prompt "Updated Supermium settings. Press Enter/Return to continue" | Out-Null
+    }
+    else {
+        Read-Host -Prompt "Install failed! Press Enter/Return to continue" | Out-Null
+    }
+}
+
+# Remove Supermium settings
+function Uninstall-Supermium {
+    Show-Header
+    Write-Host "Downloading registry file, please wait..."
+    # Download file
+    try {
+        Invoke-WebRequest $SupermiumUninstallRegistry -OutFile "$env:LocalAppData\supermium.reg"
+    }
+    catch {
+        Read-Host -Prompt "Download failed! Press Enter/Return to continue" | Out-Null
+        Return
+    }
+    # Install file
+    $SupermiumUninstall = Start-Process "reg.exe" -ArgumentList "import `"$env:LocalAppData\supermium.reg`"" -WindowStyle Hidden -Wait -PassThru
+    if ($SupermiumUninstall.ExitCode -eq 0) {
+        Read-Host -Prompt "Removed Supermium settings. Press Enter/Return to continue" | Out-Null
     }
     else {
         Read-Host -Prompt "Remove failed! Press Enter/Return to continue" | Out-Null
@@ -261,6 +307,21 @@ function Show-Menu {
             $options.Add(@{
                     Label  = "Google Chrome: Remove settings"
                     Action = { Uninstall-Chrome }
+                })
+        }
+    }
+    # Supermium without settings applied
+    $options.Add(@{
+            Label  = "Supermium: Update settings"
+            Action = { Install-Supermium }
+        })
+    # Supermium with settings applied
+    if (Test-Path "HKLM:\SOFTWARE\Policies\Supermium") {
+        $SupermiumCheck = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Supermium" -ErrorAction SilentlyContinue).AIModeSettings
+        if ($null -ne $SupermiumCheck) {
+            $options.Add(@{
+                    Label  = "Supermium: Remove settings"
+                    Action = { Uninstall-Supermium }
                 })
         }
     }

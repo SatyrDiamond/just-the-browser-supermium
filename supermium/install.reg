@@ -1,0 +1,24 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Supermium]
+"AIModeSettings"=dword:00000001
+"CreateThemesSettings"=dword:00000002
+"GeminiSettings"=dword:00000001
+"GenAILocalFoundationalModelSettings"=dword:00000001
+"HelpMeWriteSettings"=dword:00000002
+"HistorySearchSettings"=dword:00000002
+"TabCompareSettings"=dword:00000002
+"BuiltInDnsClientEnabled"=dword:00000000
+"DefaultBrowserSettingEnabled"=dword:00000000
+"DevToolsGenAiSettings"=dword:00000002
+"SearchContentSharingSettings"=dword:00000001
+"HelpMeReadSettings"=dword:00000002
+"AutofillPredictionSettings"=dword:00000002
+"ChromeSuggestionsSettings"=dword:00000001
+"FindsSettings"=dword:00000002
+"ThirdPartyAiChatSettings"=dword:00000001
+"ShoppingListEnabled"=dword:00000000
+"PromotionsEnabled"=dword:00000000
+"TryOnYouSettings"=dword:00000002
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\JustTheBrowserSupermium]
